@@ -1,0 +1,86 @@
+<template>
+    <div class={outerDivClass2}>
+        <label class="slds-form-element__label" for="date-input-id">{label}</label>
+        <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+            <div class="form-element">
+                <input type="text" name="date-input-id" id="date-input-id" readonly value={value}
+                    placeholder={_placeholder} class={inputClass} onfocus={handleInputFocus}></input>
+            </div>
+            <button onclick={handleClearDate}
+                class="clear-button slds-input__icon slds-input__icon_right slds-button slds-button_icon"
+                lwc:if={value}>
+                <lightning-icon icon-name="utility:clear" size="x-small" class="slds-button__icon"></lightning-icon>
+                <span class="slds-assistive-text">Clear</span>
+            </button>
+            <lightning-icon icon-name="utility:event" size="x-small"
+                class="slds-icon slds-input__icon slds-input__icon_right slds-icon-text-default"></lightning-icon>
+        </div>
+        <span lwc:if={error} class="error">{errorMessage}</span>
+
+        <div if:true={_open} class="slds-datepicker slds-dropdown slds-dropdown_left slds-dropdown_fluid" role="dialog"
+            onmouseover={handleMouseOver} onmouseout={handleMouseOut}>
+            <div class="slds-datepicker__filter slds-grid">
+                <div class="slds-datepicker__filter_month slds-grid slds-grid_align-spread slds-grow">
+                    <div class="slds-align-middle">
+                        <button onclick={goToPreviousMonth}
+                            class="slds-button slds-button_icon slds-button_icon-container">
+                            <lightning-icon icon-name="utility:left" size="small"
+                                class="slds-button-icon"></lightning-icon>
+                        </button>
+                    </div>
+                    <h2 class="slds-align-middle current-month" aria-live="assertive" aria-atomic="true">{monthName}
+                    </h2>
+                    <div class="slds-align-middle">
+                        <button onclick={goToNextMonth} class="slds-button slds-button_icon slds-button_icon-container">
+                            <lightning-icon icon-name="utility:right" size="small"
+                                class="slds-button-icon"></lightning-icon>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="slds-shrink-none">
+                    <label class="slds-assistive-text" for="year-select">Pick a Year</label>
+                    <div class="slds-select_container">
+                        <select class="slds-select" id="year-select" onchange={handleYearChange}>
+                            <template for:each={years} for:item="year">
+                                <option key={year.value} value={year.value} selected={year.selected}>{year.label}
+                                </option>
+                            </template>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <table class="slds-datepicker__month" role="grid" aria-labelledby="month">
+                <thead>
+                    <tr>
+                        <template for:each={_namesOfWeekdays} for:item="day">
+                            <th key={day.key} scope="col">
+                                <abbr title={day.longName}>{day.shortName}</abbr>
+                            </th>
+                        </template>
+                    </tr>
+                </thead>
+                <tbody>
+                    <template for:each={dayGrid} for:item="week">
+                        <tr key={week.weekKey}>
+                            <template for:each={week.days} for:item="day">
+                                <td key={day.key} data-full-date={day.value} role="gridcell" class={day.tdClass}
+                                    aria-selected={day.ariaSelected} aria-disabled={day.ariaDisabled}
+                                    onclick={handleTableCellClick}>
+                                    <span tabindex="-1" class="slds-day">{day.label}</span>
+                                </td>
+                            </template>
+                        </tr>
+                    </template>
+
+                    <tr lwc:if={showTodayHyperlink}>
+                        <td colspan="7" role="gridcell">
+                            <a onclick={goToToday} class="slds-show_inline-block slds-p-bottom_x-small">Today</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</template>

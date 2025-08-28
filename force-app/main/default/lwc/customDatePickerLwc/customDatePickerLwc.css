@@ -1,0 +1,53 @@
+/* Custom styling for the date picker component */
+
+.unselectable > .slds-day {
+  cursor: not-allowed;
+}
+
+.selectable > .slds-day {
+  font-size: medium;
+  text-align: center;
+  font-size: 14px;
+  color: green;
+}
+
+.dateErrorBorder {
+  border: 1px solid red !important;
+  border-radius: 0.25rem !important;
+}
+
+.error {
+  color: red;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+/* Base styles for SLDS date picker */
+.slds-datepicker__month {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.slds-datepicker__month th, .slds-datepicker__month td {
+  text-align: center;
+  padding: 0.25rem;
+}
+
+.slds-datepicker__month thead {
+  background-color: #f0f1f2;
+}
+
+.slds-day {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 2rem;
+  width: 2rem;
+}
+
+/* Remove default focus outline on buttons for better visual consistency */
+.slds-button_icon-container:focus {
+  box-shadow: none !important;
+  outline: none !important;
+}
