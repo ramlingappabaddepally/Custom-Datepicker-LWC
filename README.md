@@ -1,6 +1,7 @@
 # Custom LWC Date Picker Component
 
 Production-ready Lightning Web Component (LWC) for a custom date picker. This component was refactored from an existing solution to align with Salesforce best practices, ensuring a reliable, accessible, and easily maintainable component. It includes features for dynamic date validation and restricted day selection, which are not available in the standard lightning-input component.
+<img width="610" height="460" alt="image" src="https://github.com/user-attachments/assets/287f069a-6ce3-46c3-b5ea-59e858652ebd" />
 
 ### Key Features
 
